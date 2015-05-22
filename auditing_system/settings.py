@@ -37,6 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'auditor_management',
+    'bill_verification',
+    'log_backup',
+    'bill_statistics'
 )
 
 MIDDLEWARE_CLASSES = (
