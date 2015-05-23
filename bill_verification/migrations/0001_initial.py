@@ -11,19 +11,25 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='BillReport',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Report',
             fields=[
-                ('report_id', models.IntegerField(serialize=False, primary_key=True)),
+                ('report_id', models.IntegerField(primary_key=True, serialize=False)),
                 ('report_info', models.CharField(max_length=256)),
             ],
         ),
         migrations.CreateModel(
             name='UnverifiedBill',
             fields=[
-                ('bill_id', models.IntegerField(serialize=False, primary_key=True)),
+                ('bill_id', models.IntegerField(primary_key=True, serialize=False)),
                 ('order_id', models.IntegerField()),
-                ('buyer_name', models.CharField(max_length=128)),
-                ('seller_name', models.CharField(max_length=128)),
+                ('buyer_name', models.CharField(max_length=32)),
+                ('seller_name', models.CharField(max_length=32)),
                 ('goods_quantity', models.IntegerField()),
                 ('goods_unit_price', models.FloatField()),
                 ('supposed_to_pay', models.FloatField()),
@@ -36,10 +42,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='VerifiedBill',
             fields=[
-                ('bill_id', models.IntegerField(serialize=False, primary_key=True)),
+                ('bill_id', models.IntegerField(primary_key=True, serialize=False)),
                 ('order_id', models.IntegerField()),
-                ('buyer_name', models.CharField(max_length=128)),
-                ('seller_name', models.CharField(max_length=128)),
+                ('buyer_name', models.CharField(max_length=32)),
+                ('seller_name', models.CharField(max_length=32)),
                 ('goods_quantity', models.IntegerField()),
                 ('goods_unit_price', models.FloatField()),
                 ('supposed_to_pay', models.FloatField()),
@@ -51,11 +57,14 @@ class Migration(migrations.Migration):
                 ('bill_verified_time', models.DateTimeField(auto_now_add=True)),
             ],
         ),
-        migrations.CreateModel(
-            name='BillReport',
-            fields=[
-                ('bill_id', models.OneToOneField(to='bill_verification.VerifiedBill', primary_key=True, serialize=False)),
-                ('report_id', models.OneToOneField(to='bill_verification.Report', primary_key=True)),
-            ],
+        migrations.AddField(
+            model_name='billreport',
+            name='bill_id',
+            field=models.OneToOneField(to='bill_verification.VerifiedBill'),
+        ),
+        migrations.AddField(
+            model_name='billreport',
+            name='report_id',
+            field=models.OneToOneField(to='bill_verification.Report'),
         ),
     ]

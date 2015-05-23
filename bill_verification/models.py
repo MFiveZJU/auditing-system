@@ -3,6 +3,9 @@ from django.db import models
 # Create your models here.
 
 class UnverifiedBill(models.Model):
+    # meta-options
+    db_table = 'UnverifiedBill'
+    # column
     bill_id = models.IntegerField(primary_key=True)
     order_id = models.IntegerField()
     buyer_name = models.CharField(max_length=32)
@@ -18,6 +21,9 @@ class UnverifiedBill(models.Model):
 
 
 class VerifiedBill(models.Model):
+    # meta-options
+    db_table = 'VerifiedBill'
+    # column
     bill_id = models.IntegerField(primary_key=True)
     order_id = models.IntegerField()
     buyer_name = models.CharField(max_length=32)
@@ -35,10 +41,18 @@ class VerifiedBill(models.Model):
 
 
 class Report(models.Model):
+    # meta-options
+    db_table = 'Report'
+    # column
     report_id = models.IntegerField(primary_key=True)
     report_info = models.CharField(max_length=256)
 
 
 class BillReport(models.Model):
-    bill_id = models.OneToOneField(VerifiedBill, primary_key=True)
-    report_id = models.OneToOneField(Report, primary_key=True)
+    # meta-options
+    db_table = 'BillReport'
+    # column
+    bill_id = models.OneToOneField(VerifiedBill)
+    report_id = models.OneToOneField(Report)
+    # bill_id = models.OneToOneField(VerifiedBill, related_name='report_id')
+    # report_id = models.OneToOneField(Report, related_name='bill_id')
