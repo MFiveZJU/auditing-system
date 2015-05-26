@@ -12,19 +12,19 @@
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="./">Auditing System</a>
+
+{% include "auditor_management/navbar.html" %}
+
+<form action="/auditor_management/signup/" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="navbar-brand" href="./signup">Sign up</a></li>
-                <li><a class="navbar-brand" href="./signin">Sign in</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-{#signup here#}
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+
 </body>
 </html>
