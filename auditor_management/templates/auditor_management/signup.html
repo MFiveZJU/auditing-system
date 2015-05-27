@@ -15,27 +15,24 @@
 </head>
 
 <body>
-
 {% include "auditor_management/navbar.html" %}
-
 <div class="container">
-    <form action="/auditor_management/signup/" method="post">
-        <div class="form-signup">
-            {% csrf_token %}
-            <h2 class="form-signup-heading">Please Signup</h2>
-            {% for field in form %}
-                <div class="form-group">
-                    {{ field.errors }}
-                    {# {{ field.label_tag }}#}
-                    {{ field }}
-                </div>
-            {% endfor %}
-        </div>
-        <div class="form-signup">
-            <input class="btn btn-primary btn-block btn-lg" type="submit" value="Submit">
-        </div>
+    <form class="form-signup" action="/auditor_management/signup/" method="post">
+        {#        <div >#}
+        {% csrf_token %}
+        <h2 class="form-signup-heading">Please Signup</h2>
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {# {{ field.label_tag }}#}
+                {{ field }}
+            </div>
+        {% endfor %}
+        {#        </div>#}
+        {#        <div class="form-signup">#}
+        <input class="btn btn-primary btn-block btn-lg" type="submit" value="Submit">
+        {#        </div>#}
     </form>
 </div>
-
 </body>
 </html>

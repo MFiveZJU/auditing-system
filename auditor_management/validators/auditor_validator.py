@@ -9,3 +9,7 @@ def phone_validator(phone_number):
     for char in phone_number:
         if char < '0' or char > '9':
             raise ValidationError('Phone number should only contain digits.')
+
+def password_confirmed_validator(password, password_confirm):
+    if password != password_confirm:
+        raise ValidationError('not equal')

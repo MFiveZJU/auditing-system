@@ -50,7 +50,7 @@ body {
 
 .form-signup, .form-signin {
     width: 400px;
-    margin: 0 auto;
+    margin: 100px auto;
 }
 
 .form-signup-heading, .form-signin-heading {
